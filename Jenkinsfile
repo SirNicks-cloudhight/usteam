@@ -62,7 +62,7 @@ pipeline {
             steps {
                 sshagent (['ansible-key']) {
                       
-                      sh 'ssh -t -t ec2-user@15.188.89.85 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook /opt/docker/docker-image.yml"'
+                      sh 'ssh -t -t ec2-user@15.237.42.114 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook /opt/docker/docker-image.yml"'
                   }
               }
         }                
@@ -74,8 +74,8 @@ pipeline {
         stage('Trigger Ansible to deploy app') {
             steps {
                 sshagent (['ansible-key']) {
-                      sh 'ssh -t -t ec2-user@15.188.89.85 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook /opt/docker/docker-container.yml"'
-                      sh 'ssh -t -t ec2-user@15.188.89.85 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook /opt/docker/newrelic-container.yml"'
+                      sh 'ssh -t -t ec2-user@15.237.42.114 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook /opt/docker/docker-container.yml"'
+                      sh 'ssh -t -t ec2-user@15.237.42.114 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook /opt/docker/newrelic-container.yml"'
                   }
               }
         }
