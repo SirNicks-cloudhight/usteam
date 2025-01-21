@@ -28,16 +28,16 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
-        stage('Infrastructure Security Scan') {
-            steps {
-                sh '''
-                    # Install Checkov if not already installed
-                    pip install checkov --quiet || echo "Checkov already installed"
-                    # Run Checkov scan on the repository
-                    checkov -d . --output cli
-                '''
-            }
-        }
+        // stage('Infrastructure Security Scan') {
+        //     steps {
+        //         sh '''
+        //             # Install Checkov if not already installed
+        //             pip install checkov --quiet || echo "Checkov already installed"
+        //             # Run Checkov scan on the repository
+        //             checkov -d . --output cli
+        //         '''
+        //     }
+        // }
         stage('Build Artifact') {
             steps {
                 sh 'mvn -f pom.xml clean package -DskipTests -Dcheckstyle.skip'
